@@ -15,26 +15,20 @@ import codecs
 import sys
 
 # for twitter api
-consumer_key="DIQD9DEHmz7Ywszmpx7GFw"
-consumer_secret="L9jAFM5Wp4wgioPXtw7brVgnHYTnFqYOhMLZ0uVcFk"
+consumer_key="TWITTER_CONSUMER_KEY"
+consumer_secret="TWITTER_SECRET"
 
-access_token="199157976-4NVV1w1q2eTfFeKeWUQR1LJisxmxF2eHeHxO38e2"
-access_token_secret="3VPfssgjSLeA0aDvqzhUjWaz780fHGcaLeHnIk1j6JU8F"
-'''
-consumer_key="TskUxHE3HGJagwkDZ0j37MMW2"
-consumer_secret="0cAuhPAvCnumKRMqjZaM9wKjCtcUD8SLzMVUbOJiab1yOkAMSm"
-
-access_token="209939083-mmBJMfNRYJjll5c1fopgHgxIsI6N6DCe90AV7Pi4"
-access_token_secret="dasdgasThzjKrVAmQnEFGuFH2zd1mGkQx6wCwpGviOnWxVFScNz"
-'''
+access_token="TWITTER_ACCESS_TOKEN"
+access_token_secret="TWITTER_ACCESS_TOKEN_SECRET"
 # for twitter api end
 
 app = Flask(__name__)
 
 def check_auth(username, password):
     dic_username_password = dict()
+    # password setup
     dic_username_password['test'] = 'test1'
-    dic_username_password['prory'] = 'dusrndhkd'
+    # password setup end
     
     if username in dic_username_password:
         if dic_username_password[username] == password:
@@ -126,7 +120,7 @@ def program():
     casts = request.args.get('casts')
     
     db = MySQLdb.connect(host="localhost", 
-            user="god5323", passwd="god5323", 
+            user="your_mysql_db_user", passwd="your_mysql_db_password", 
             db="tv", use_unicode=True, charset="utf8")
     cursor = db.cursor()
 
@@ -150,7 +144,7 @@ def program():
             program_info["onair"] = row[4]
             program_info["ch"] = row[5]
             program_info["casts"] = row[6]
-            #print row[0], row[1], row[2], row[3], row[4], row[5], row[6]
+            
             list_info.append(program_info) 
     
     db.close()
